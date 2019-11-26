@@ -1,19 +1,14 @@
 pipeline {
-  agent any
-  stages {
-    stage('') {
-      steps {
-        sh '''pipeline {
    agent {
        label "mipod"
    }
 
    stages {
-      stage(\'Build\') {
+      stage('Build') {
          steps {
             // Get some code from a GitHub repository
-            git \'https://github.com/jglick/simple-maven-project-with-tests.git\'
-            container(\'centos\') {
+            git 'https://github.com/jglick/simple-maven-project-with-tests.git'
+            container('centos') {
             // Run Maven on a Unix agent.
                 sh "yum --version"
             }
@@ -30,7 +25,7 @@ pipeline {
             }
          }
       }
-      stage(\'Test\') {
+      stage('Test') {
          steps {
             // Get some code from a GitHub repository
             // Run Maven on a Unix agent.
@@ -42,9 +37,4 @@ pipeline {
 
       }
    }
-}'''
-        }
-      }
-
-    }
-  }
+}
